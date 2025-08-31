@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Computer/IT Engineering - C Programming Competition</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&family=Inter:wght@800&display=swap" rel="stylesheet">
+  <style>
+        body,
+        html {
+            font-family: 'Inter', sans-serif;
+            background-image: url('Background.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            overflow: hidden;
+            /* Prevent all scrolling for desktop view */
+            margin: 0;
+            height: 100vh;
+        }
+
+    .header-title {
+      font-family: 'Roboto Mono', monospace;
+    }
+
+    .scene-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      animation: fadeInPage 1s ease-in-out forwards;
+    }
+
+    .scene-element {
+      position: absolute;
+      bottom: 0;
+      object-fit: contain;
+      pointer-events: none;
+    }
+
+        #toolbg {
+            width: 100%;
+            max-width: 100%;
+            right: 0%;
+            bottom: 0;
+            z-index: 5;
+            opacity: 0.8;
+            translate: 30% 0;
+            filter: blur(1px);
+        }
+        #tool {
+            width: 17%;
+            max-width: 550px;
+            left: 10%;
+            bottom: 10%;
+            z-index: 20;
+            animation: float 4s ease-in-out infinite;
+      }
+    .event-cards-container {
+      position: absolute;
+      top: 25%;
+      right: 5%;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      z-index: 30;
+      cursor: pointer;
+      width: 50%;
+    }
+
+    .event-card {
+      background-color: #1e293be2;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      backdrop-filter: blur(5px);
+      border: 1px solid #334155;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      color: #ccd6f6;
+      transition: all 0.3s ease-in-out;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: slideUpFadeIn 0.6s ease-out forwards;
+      max-height: 60vh;
+      overflow-y: auto;
+      padding-right: 15px;
+    }
+
+    .event-card:hover {
+      transform: translateY(-5px);
+      border-color: #F59E0B;
+    }
+
+    .event-card h2,
+    .event-card h3,
+    .event-card h4 {
+      font-family: 'Roboto Mono', monospace;
+      font-weight: 700;
+      color: #fbbf24;
+      margin-bottom: 0.75rem;
+    }
+
+    .event-card p,
+    .event-card li {
+      font-size: 0.9rem;
+      color: #e2e8f0;
+      line-height: 1.6;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) }
+      50% { transform: translateY(-15px) }
+      100% { transform: translateY(0) }
+    }
+
+    @keyframes fadeInPage {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUpFadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 900px) {
+      .event-cards-container {
+        width: 90%;
+        right: 50%;
+        transform: translateX(50%);
+        top: 20%;
+        align-items: center;
+        padding: 0px;
+      }
+
+      #tool {
+        width: 40%;
+        left: 35%;
+        bottom: 4%;
+
+      }
+
+      #toolbg {
+        width: 200%;
+        height: 200%;
+        max-width: 2000%;
+        top: -50%;
+        right: -50%;
+      }
+    }
+  </style>
+</head>
+<body class="antialiased">
+
+  <div class="scene-container">
+    <header class="absolute top-0 left-0 w-full p-8 md:p-12 lg:p-16 z-30 flex justify-between items-start">
+      <h1 class="header-title text-4xl md:text-5xl lg:text-6xl font-extrabold text-white">
+        Techvibe<br> Math-O-Run
+      </h1>
+
+      <a href="../science.html" title="Go back" class="text-white hover:text-amber-400 transition-all duration-300 hover:scale-105">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
+        </svg>
+      </a>
+    </header>
+
+    <div class="event-cards-container">
+      <div class="event-card p-6 md:p-8 rounded-lg shadow-xl backdrop-blur-sm bg-zinc-800/60 border border-zinc-700">
+        <h3 class="text-xl md:text-2xl font-bold text-amber-400 mb-4">Event Category</h3>
+        <p class="text-zinc-300 mb-4">Group(4)</p>
+
+        <h3 class="text-xl md:text-2xl font-bold text-amber-400 mb-4">Event Brief</h3>
+        <ul class="list-disc list-inside space-y-2 text-zinc-300 mb-4">
+            <li>Exciting team-based mathematics challenge.</li>
+            <li>Tests speed, accuracy, logical reasoning, and teamwork.</li>
+            <li>Follows a relay race format – each player must solve their challenge before the next can begin.</li>
+            <li>After the first five challenges, the event ends with a rapid-fire round.</li>
+            <li>The rapid-fire round decides the ultimate winner.</li>
+        </ul>
+
+        <h3 class="text-xl md:text-2xl font-bold text-amber-400 mb-4">Round Structure</h3>
+        <ul class="list-disc list-inside space-y-4 text-zinc-300 mb-4">
+            <li><span class="font-semibold">Round 1 – Relay Challenges</span>
+                <ul class="list-circle list-inside ml-4 mt-2 space-y-1">
+                    <li>5 members per team.</li>
+                    <li>Relay style: next player starts after previous finishes.</li>
+                    <li>5 challenges (30–90 sec each). Total time: ~5 mins.</li>
+                    <li>Calculator allowed (penalty –9/10 points).</li>
+                    <li>Bonus: Finish early = extra points (–1 point / 4 sec saved).</li>
+                </ul>
+            </li>
+            <li><span class="font-semibold">Round 2 – Rapid Fire</span>
+                <ul class="list-circle list-inside ml-4 mt-2 space-y-1">
+                    <li>10 questions to both teams simultaneously.</li>
+                    <li>5 sec to answer each.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3 class="text-xl md:text-2xl font-bold text-amber-400 mb-4">Scoring:</h3>
+        <ul class="list-disc list-inside space-y-2 text-zinc-300 mb-4">
+            <li>1st team correct: +7 | Wrong: –3</li>
+            <li>Passed to 2nd team: Correct: +4 | Wrong: –2</li>
+            <li>No answer: Skipped</li>
+        </ul>
+
+        <h3 class="text-xl md:text-2xl font-bold text-amber-400 mb-4">Rules and Regulations</h3>
+        <ul class="list-disc list-inside space-y-2 text-zinc-300 mb-4">
+            <li>Each team must have 5 participants.</li>
+            <li>Relay challenges must be completed in sequence.</li>
+            <li>Misconduct or unfair means = disqualification.</li>
+            <li>Calculator use is penalized as per rules.</li>
+            <li>Judges’ decision is final and binding.</li>
+        </ul>
+
+        <h3 class="text-xl md:text-2xl font-bold text-amber-400 mb-4">Judging Criteria</h3>
+        <ul class="list-disc list-inside space-y-2 text-zinc-300">
+            <li>Teams must complete all five relay challenges within the time frame.</li>
+            <li>The Rapid Fire round determines the winner based on points.</li>
+            <li>In case of a tie, the time taken in the relay round will be the deciding factor.</li>
+        </ul>
+
+        <h3 class="text-xl md:text-2xl font-bold text-amber-400 mb-4">EC Details</h3>
+        <ul class="list-disc list-inside space-y-2 text-zinc-300">
+            <li>Chhabi Jariwala - 8460129890</li>
+            <li>Dharmik Sharma - 7861942789</li>
+        </ul>
+      </div>
+    </div>
+
+    <img src="toolbg.png" alt="Binary Background" id="toolbg" class="scene-element">
+    <img src="tool.png" alt="Computer Illustration" id="tool" class="scene-element">
+
+  </div>
+</body>
+</html>

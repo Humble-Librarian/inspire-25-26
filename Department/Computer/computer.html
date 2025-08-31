@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer/IT Engineering - Tech Fest</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&family=Inter:wght@800&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-image: url('Background.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            overflow: hidden;
+            /* Prevent scrolling */
+            margin: 0;
+            height: 100vh;
+        }
+
+        .header-title {
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        /* Container for all visual elements */
+        .scene-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            animation: fadeInPage 1s ease-in-out forwards;
+            /* Added page fade-in animation */
+        }
+
+        /* Base styles for positioned images */
+        .scene-element {
+            position: absolute;
+            bottom: 0;
+            object-fit: contain;
+            pointer-events: none;
+            /* Make images non-interactive */
+        }
+
+        #toolbg {
+            width: 55%;
+            max-width: 900px;
+            right: -5%;
+            top: 0;
+            z-index: 5;
+            opacity: 0.8;
+            filter: blur(1px);
+        }
+
+        #tool {
+            width: 50%;
+            max-width: 550px;
+            left: 2%;
+            bottom: 6%;
+            z-index: 20;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Event Cards Styling */
+        .event-cards-container {
+            position: absolute;
+            top: 30%;
+            left: 70%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            z-index: 30;
+            /* Key changes for scrolling */
+            max-height: 50vh;
+            /* 1. Set a maximum height */
+            overflow-y: auto;
+            /* 2. Enable vertical scroll when content overflows */
+            padding-right: 1rem;
+            /* 3. Add padding for the scrsollbar */
+        }
+
+        .event-card {
+            background-color: #bd2f32aa;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid #ddd7ce;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            width: 550px;
+            color: #ccd6f6;
+            transition: all 0.3s ease-in-out;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideUpFadeIn 0.6s ease-out forwards;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+            /* Prevent cards from shrinking */
+            cursor: pointer;
+        }
+
+        .event-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .event-card:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        .event-card:nth-child(n+4) {
+            animation-delay: 0.4s;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            border-color: #ec9f04;
+        }
+
+        .event-card h2 {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .event-card p {
+            font-size: 0.875rem;
+            color: #a8b2d1;
+            line-height: 1.5;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-emoji {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            font-size: 6rem;
+            opacity: 0.3;
+            z-index: 0;
+            transition: transform 0.5s ease-out;
+        }
+
+        .event-card:hover .card-emoji {
+            animation: wobble 2s ease-in-out infinite;
+        }
+
+        /* --- CUSTOM SCROLLBAR STYLING (RED THEME) --- */
+        .event-cards-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .event-cards-container::-webkit-scrollbar-track {
+            background: #bc4749a9;
+            border-radius: 10px;
+        }
+
+        .event-cards-container::-webkit-scrollbar-thumb {
+            background-color: #c1b2b2;
+            border-radius: 10px;
+        }
+
+        .event-cards-container::-webkit-scrollbar-thumb:hover {
+            background-color: #bc4749a9;
+        }
+
+        /* --- END OF CUSTOM SCROLLBAR --- */
+        @keyframes float {
+            0% {
+                transform: translateY(0)
+            }
+
+            50% {
+                transform: translateY(-15px)
+            }
+
+            100% {
+                transform: translateY(0)
+            }
+        }
+
+        /* Keyframe Animations */
+        @keyframes fadeInPage {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUpFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes wobble {
+
+            0%,
+            100% {
+                transform: rotate(-8deg);
+            }
+
+            50% {
+                transform: rotate(8deg);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .header-title {
+                font-size: 6rem;
+                line-height: 1;
+
+            }
+
+            .event-cards-container {
+                width: 90%;
+                left: 50%;
+                transform: translateX(-50%);
+                top: 15%;
+                gap: 2rem;
+                align-items: center;
+            }
+
+            .event-card {
+                width: 100%;
+                padding: 0.75rem;
+            }
+
+            #tool {
+                width: 50%;
+                max-width: none;
+                left: 50%;
+                transform: translateX(-50%);
+                bottom: 5%;
+                animation: float-mobile 4s ease-in-out infinite;
+            }
+
+            #toolbg {
+                width: 100%;
+                height: 100%;
+                right: 0;
+                top: 15%;
+                bottom: 0;
+                object-fit: cover;
+                z-index: 1;
+            }
+
+            @keyframes float-mobile {
+                0% {
+                    transform: translateX(-50%) translateY(0);
+                }
+
+                50% {
+                    transform: translateX(-50%) translateY(-10px);
+                }
+
+                100% {
+                    transform: translateX(-50%) translateY(0);
+                }
+            }
+
+        }
+
+        @media (max-width: 450px) {
+            .header-title {
+                font-size: 6rem;
+                line-height: 1;
+
+            }
+
+            .event-cards-container {
+                width: 90%;
+                left: 50%;
+                transform: translateX(-50%);
+                top: 23%;
+                gap: 1rem;
+                align-items: center;
+            }
+
+            .event-card h2 {
+                font-family: 'Roboto Mono', monospace;
+                font-size: 1rem;
+                font-weight: 700;
+                color: #ffffff;
+                margin-bottom: 0.5rem;
+                position: relative;
+                z-index: 1;
+            }
+
+            .event-card p {
+                font-size: 0.73rem;
+                color: #a8b2d1;
+                line-height: 1.5;
+                position: relative;
+                z-index: 1;
+            }
+
+            .card-emoji {
+                position: absolute;
+                top: -10px;
+                right: -15px;
+                font-size: 5rem;
+                opacity: 0.3;
+                z-index: 0;
+                transition: transform 0.5s ease-out;
+            }
+
+            .event-card {
+                width: 100%;
+                padding: 0.75rem;
+            }
+
+            #tool {
+                width: 70%;
+                max-width: none;
+                left: 50%;
+                transform: translateX(-50%);
+                bottom: 2%;
+                animation: float-mobile 4s ease-in-out infinite;
+            }
+
+            #toolbg {
+                width: 100%;
+                height: 100%;
+                right: 0;
+                top: 15%;
+                bottom: 0;
+                object-fit: cover;
+                z-index: 1;
+            }
+
+            @keyframes float-mobile {
+                0% {
+                    transform: translateX(-50%) translateY(0);
+                }
+
+                50% {
+                    transform: translateX(-50%) translateY(-10px);
+                }
+
+                100% {
+                    transform: translateX(-50%) translateY(0);
+                }
+            }
+
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <div class="scene-container">
+        <header class="absolute top-0 left-0 w-full p-8 md:p-12 lg:p-16 z-30 flex justify-between items-start">
+            <h1 class="header-title text-4xl md:text-5xl lg:text-6xl font-extrabold text-white">
+                COMPUTER/IT<br>ENGINEERING
+            </h1>
+
+            <a href="../../index.html#next" title="Go back"
+                class="text-white hover:text-amber-400 transition-all duration-300 hover:scale-105">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
+                </svg>
+            </a>
+        </header>
+
+        <div class="event-cards-container">
+            <a href="EventPages/Event1.html">
+                <div class="event-card">
+                    <div class="card-emoji">🖥️</div>
+                    <h2>C-Ignite</h2>
+                    <p>Test your C programming skills across three rounds — Easy, Intermediate, and Hard — with speed and accuracy.</p>
+                </div>
+            </a>
+            <a href="EventPages/Event2.html">
+                <div class="event-card">
+                    <div class="card-emoji">🗺️</div>
+                    <h2>Techpitch</h2>
+                    <p>Showcase your domain with a poster, present it to the jury, and answer their questions during the judging sessions</p>
+                </div>
+            </a>
+            <a href="EventPages/Event3.html">
+                <div class="event-card">
+                    <div class="card-emoji">🕸️</div>
+                    <h2>WebNexuss</h2>
+                    <p>Showcase your creativity and coding skills by building innovative web pages using only HTML, CSS, and JavaScript within 1.5 hours.</p>
+                </div>
+            </a>
+            <a href="EventPages/Event4.html">
+                <div class="event-card">
+                    <div class="card-emoji">🤖</div>
+                    <h2>Prompt League</h2>
+                    <p>Showcase your creativity by designing powerful AI prompts on the spot and generating innovative outputs across two challenging rounds.</p>
+                </div>
+            </a>
+            <a href="EventPages/Event5.html">
+                <div class="event-card">
+                    <div class="card-emoji">🎮</div>
+                    <h2>Flyer Fusion</h2>
+                    <p>Unleash your creativity by designing an impactful flyer on the theme Techvibe: Igniting Ideas, Inspiring Innovation using digital design tools.</p>
+                </div>
+            </a>
+            <a href="EventPages/Event6.html">
+                <div class="event-card">
+                    <div class="card-emoji">🕵️‍♀️</div>
+                    <h2>Brute N Unlock</h2>
+                    <p>Put your coding and logic to the test by writing a brute-force program to crack a locked zip file using a given password list..</p>
+                </div>
+            </a>
+        </div>
+
+
+        <img src="backgound1.png" alt="O / 1 Binary Code" id="toolbg" class="scene-element">
+        <img src="computer.png" alt="Computer Server" id="tool" class="scene-element">
+
+    </div>
+
+</body>
+
+</html>
