@@ -151,6 +151,3 @@ Meet the amazing core team behind the Inspire '25–'26 website:
 
 ---
 
-## 📝 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
