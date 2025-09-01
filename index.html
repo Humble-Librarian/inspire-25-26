@@ -3,9 +3,12 @@
 
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="INSPIRE - College Tech Fest" />
   <title>INSPIRE</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.cdnfonts.com">
 </head>
 
 <body>
@@ -14,12 +17,12 @@
     <div class="bg"></div>
     <h1 class="title">INSPIIRE</h1>
     <div class="left-group">
-      <img src="Hero Section/astroids.png" alt="astroid-left" class="astroid-left">
-      <img src="Hero Section/Astronuts.png" alt="astronaut" class="astronaut">
+      <img src="Hero Section/astroids.png" alt="astroid-left" class="astroid-left" loading="eager">
+      <img src="Hero Section/Astronuts.png" alt="astronaut" class="astronaut" loading="eager">
     </div>
     <div class="right-group">
-      <img src="Hero Section/astroids.png" alt="astroid-right" class="astroid-right">
-      <img src="Hero Section/astroids-1.webp" alt="astroid1" class="astroid1">
+      <img src="Hero Section/astroids.png" alt="astroid-right" class="astroid-right" loading="eager">
+      <img src="Hero Section/astroids-1.webp" alt="astroid1" class="astroid1" loading="eager">
     </div>
 
     <div class="scroll-indicator mouse-scroll">
@@ -35,37 +38,35 @@
   <div class="bg-second"></div>
   <canvas id="skyCanvas"></canvas>
   <div class="right-group-2">
-    <img src="Dep_Select/astronut.png" alt="Astronaut" class="astronaut-second">
+    <img src="Dep_Select/astronut.png" alt="Astronaut" class="astronaut-second" loading="lazy">
   </div>
   <div class="left-group-2">
-    <img src="Dep_Select/comet.webp" alt="Comet" class="comet">
+    <img src="Dep_Select/comet.webp" alt="Comet" class="comet" loading="lazy">
   </div>
 
   <div class="grid-container">
     <div class="grid-row-1">
-      <a href="Department/Computer/computer.html">
-        <img src="Dep_Select/Comp.png" alt="Computer Science" class="grid-item">
+      <a href="Department/Computer/computer.html" data-event="Model Presentation">
+        <img src="Dep_Select/Comp.png" alt="Computer Science" class="grid-item" loading="lazy" width="200" height="200">
       </a>
-      <a href="Department/Central/central.html">
-        <img src="Dep_Select/Central.png" alt="Central Events" class="grid-item">
+      <a href="Department/Central/central.html" data-event="Prompt League">
+        <img src="Dep_Select/Central.png" alt="Central Events" class="grid-item" loading="lazy" width="200" height="200">
       </a>
-      <a href="Department/Electrical/electrical.html">
-        <img src="Dep_Select/electrical.png" alt="Electrical Engineering" class="grid-item">
+      <a href="Department/Electrical/electrical.html" data-event="Flyer Fusion">
+        <img src="Dep_Select/electrical.png" alt="Electrical Engineering" class="grid-item" loading="lazy" width="200" height="200">
       </a>
     </div>
     <div class="grid-row-2">
-      <a href="Department/Science/science.html">
-        <img src="Dep_Select/ASPHUMAN.png" alt="Humanities" class="grid-item">
+      <a href="Department/Science/science.html" data-event="Techvibe Math-O-Run">
+        <img src="Dep_Select/ASPHUMAN.png" alt="Humanities" class="grid-item" loading="lazy" width="200" height="200">
       </a>
-      <a href="Department/Civil/civil.html">
-        <img src="Dep_Select/Civil.png" alt="Civil Engineering" class="grid-item">
+      <a href="Department/Civil/civil.html" data-event="Decode the Interview">
+        <img src="Dep_Select/Civil.png" alt="Civil Engineering" class="grid-item" loading="lazy" width="200" height="200">
       </a>
-      <a href="Department/Mechnical/mechnical.html">
-        <img src="Dep_Select/mech.webp" alt="Mechanical Engineering" class="grid-item">
+      <a href="Department/Mechnical/mechnical.html" data-event="Techno Minders">
+        <img src="Dep_Select/mech.webp" alt="Mechanical Engineering" class="grid-item" loading="lazy" width="200" height="200">
       </a>
     </div>
-  </div>
-
   <div class="scroll-indicator mouse-scroll">
       <div class="mouse-shell">
           <div class="mouse-thumb"></div>
@@ -77,24 +78,23 @@
     <div class="bg-third"></div>
     <canvas id="thirdCanvas"></canvas>
     <div class="content-wrapper">
-      <img src="Time/astronot3.png" alt="Astronaut" class="astronaut-third" />
+      <img src="Time/astronot3.png" alt="Astronaut" class="astronaut-third" loading="lazy" />
       <div class="scrolling-container">
-        <img src="Time/line1.png" alt="lines" class="lines-left" />
-        <img src="Time/line2.png" alt="line" class="line-right" />
+        <img src="Time/line1.png" alt="lines" class="lines-left" loading="lazy" />
+        <img src="Time/line2.png" alt="line" class="line-right" loading="lazy" />
       </div>
       
-      <img src="Time/stone.webp" alt="stone" class="stone-top-right" />
-      <img src="Time/stone.webp" alt="stone" class="stone-bottom-left" />
-      <img src="Time/saturn.png" alt="saturn" class="saturn" />
+      <img src="Time/stone.webp" alt="stone" class="stone-top-right" loading="lazy" />
+      <img src="Time/stone.webp" alt="stone" class="stone-bottom-left" loading="lazy" />
+      <img src="Time/saturn.png" alt="saturn" class="saturn" loading="lazy" />
 
     </div>
   </section>
     <footer class="footer" id="footerL">
     <div class="footer-container">
       <div class="footer-logos">
-        <img src="footer/trust.png" alt="Navyug Vidyabhavan Trust Logo" />
-        <img src="footer/CKPCEt.png" alt="CKPCET Logo" />
-
+        <img src="footer/trust.png" alt="Navyug Vidyabhavan Trust Logo" loading="lazy" width="150" height="auto" />
+        <img src="footer/CKPCEt.png" alt="CKPCET Logo" loading="lazy" width="150" height="auto" />
       </div>
 
       <div class="footer-content">
@@ -136,7 +136,8 @@
   </footer>
 
 
-  <script src="script.js"></script>
+  <!-- Defer non-critical JavaScript for better performance -->
+  <script src="script.js" defer></script>
 
 </body>
 </html>
