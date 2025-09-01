@@ -9,9 +9,156 @@
   <title>INSPIRE</title>
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.cdnfonts.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* --- Cosmic Loader Styles --- */
+    
+    /* Loader Container - Fullscreen Overlay */
+    #loader-wrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        overflow: hidden;
+        /* Deep space gradient background */
+        background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        transition: opacity 1.5s ease-out, visibility 1.5s ease-out;
+        font-family: 'Inter', sans-serif;
+    }
+
+    /* Fade-out animation for the loader */
+    #loader-wrapper.hidden {
+        opacity: 0;
+        visibility: hidden; /* Helps prevent interaction after hiding */
+        pointer-events: none;
+    }
+
+    /* The new atom loader container */
+    #atom-loader {
+      position: relative;
+      width: 150px;
+      height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Central glowing core of the atom */
+    #atom-loader::before {
+      content: '';
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      background: #cffcff;
+      border-radius: 50%;
+      box-shadow: 0 0 15px #91f5ff, 0 0 25px #fff, 0 0 35px #00d2ff;
+      animation: pulse-core 2s infinite ease-in-out;
+    }
+
+    /* Styling for the orbiting rings */
+    .ring {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 3px solid transparent;
+    }
+
+    /* Each ring has a different border and animation for a 3D effect */
+    .ring:nth-child(1) {
+      border-bottom: 3px solid #91f5ff;
+      animation: rotate-1 2s linear infinite;
+    }
+    .ring:nth-child(2) {
+      border-right: 3px solid #00d2ff;
+      animation: rotate-2 2s linear infinite;
+    }
+    .ring:nth-child(3) {
+      border-top: 3px solid #2575fc;
+      animation: rotate-3 2s linear infinite;
+    }
+
+    /* Loading text styles */
+    #loading-text {
+        color: #fff;
+        margin-top: 3.5rem; /* Increased margin to accommodate new animation */
+        font-size: 1.3rem;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        animation: text-glow 1.5s ease-in-out infinite alternate;
+    }
+    
+    /* Keyframes for the ring rotations to create a pseudo-3D effect */
+    @keyframes rotate-1 {
+        from { transform: rotateX(55deg) rotateY(-45deg) rotateZ(0deg); }
+        to { transform: rotateX(55deg) rotateY(-45deg) rotateZ(360deg); }
+    }
+    @keyframes rotate-2 {
+        from { transform: rotateX(50deg) rotateY(30deg) rotateZ(0deg); }
+        to { transform: rotateX(50deg) rotateY(30deg) rotateZ(360deg); }
+    }
+    @keyframes rotate-3 {
+        from { transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg); }
+        to { transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg); }
+    }
+
+    /* Pulsing animation for the central core */
+    @keyframes pulse-core {
+      0%, 100% { transform: scale(0.9); }
+      50% { transform: scale(1.1); }
+    }
+    
+    /* Glowing animation for the loading text */
+    @keyframes text-glow {
+        from { text-shadow: 0 0 10px #00d2ff, 0 0 20px #00d2ff; }
+        to { text-shadow: 0 0 20px #00d2ff, 0 0 30px #2575fc, 0 0 40px #2575fc; }
+    }
+
+    /* Dynamic star styles */
+    .star {
+        position: absolute;
+        background-color: #fff;
+        border-radius: 50%;
+        box-shadow: 0 0 5px #fff, 0 0 10px #fff;
+        animation: twinkle linear infinite;
+    }
+
+    /* Twinkling animation for the stars */
+    @keyframes twinkle {
+        0%, 100% {
+            transform: scale(1);
+            opacity: 0.8;
+        }
+        50% {
+            transform: scale(0.5);
+            opacity: 0.3;
+        }
+    }
+  </style>
 </head>
 
 <body>
+  <!-- Main Loader Container -->
+  <div id="loader-wrapper">
+      <div id="atom-loader">
+        <div class="ring"></div>
+        <div class="ring"></div>
+        <div class="ring"></div>
+      </div>
+      <div id="loading-text">LOADING INSPIRE</div>
+  </div>
+
   <canvas id="cometCanvas"></canvas>
   <section class="section hero" id="hero">
     <div class="bg"></div>
@@ -138,6 +285,40 @@
 
   <!-- Defer non-critical JavaScript for better performance -->
   <script src="script.js" defer></script>
+  
+  <script>
+    // --- Cosmic Loader Script ---
+    const loaderWrapper = document.getElementById('loader-wrapper');
+    const starCount = 250; 
+
+    // Function to create a single star
+    const createStar = () => {
+        const star = document.createElement('div');
+        star.classList.add('star');
+        const size = Math.random() * 3;
+        star.style.width = `${size}px`;
+        star.style.height = `${size}px`;
+        star.style.top = `${Math.random() * 100}%`;
+        star.style.left = `${Math.random() * 100}%`;
+        star.style.animationDuration = `${Math.random() * 3 + 2}s`;
+        star.style.animationDelay = `${Math.random() * 3}s`;
+        loaderWrapper.appendChild(star);
+    };
+
+    // Generate all the stars before the page loads
+    for (let i = 0; i < starCount; i++) {
+        createStar();
+    }
+
+    // This function will run once the entire page, including all images, is fully loaded.
+    window.onload = () => {
+        // Add a minimum display time to prevent the loader from flashing too quickly
+        setTimeout(() => {
+            loaderWrapper.classList.add('hidden');
+        }, 500); // Minimum 500ms display time
+    };
+  </script>
 
 </body>
 </html>
+
