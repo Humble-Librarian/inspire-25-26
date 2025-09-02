@@ -26,6 +26,7 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
+  border-bottom: 1px solid #f8f8f8;
 }
 
 .bg {
@@ -210,11 +211,11 @@ html {
 .grid-item {
   border-radius: 10px;
   transition: all 0.3s ease;
-  box-shadow: 0 0 15px rgba(0, 231, 255, 0.3);
+  box-shadow: 0 0 20px rgba(12, 10, 10, 0.914);
 }
 
 .grid-container a:hover .grid-item {
-  box-shadow: 0 0 20px rgba(0, 231, 255, 0.6);
+  box-shadow: 0 0 3px rgb(252, 252, 252);
 }
 
 /* --- Enhanced Responsive Tweaks --- */
@@ -355,14 +356,14 @@ html {
 /* Mouse Scroll Indicator */
 .scroll-indicator.mouse-scroll {
     position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
+    bottom: 30px; /* Position it 30px from the bottom of its parent container */
+    left: 50%; /* Start at the horizontal center */
+    transform: translateX(-50%); /* Shift it back by half its own width */
     z-index: 10;
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
-    width: 30px; /* Adjust as needed */
-    height: 50px; /* Adjust as needed */
+    width: 30px;
+    height: 50px;
 }
 
 /* Make it visible when its section is loaded */
@@ -410,6 +411,8 @@ html {
   /* UPDATED: Removed overflow-y: auto from here */
   overflow-y: hidden;
 }
+
+
 
 #skyCanvas {
   position: absolute;
@@ -644,10 +647,10 @@ html {
     
     /* ADDED: Custom scrollbar styling for the grid container */
     .grid-container::-webkit-scrollbar {
-        width: 8px;
+        width: 2px;
     }
     .grid-container::-webkit-scrollbar-track {
-        background: rgba(192, 100, 8, 0.948);
+        background: rgba(192, 100, 8, 0.268);
         border-radius: 10px;
        
     }
@@ -768,7 +771,7 @@ html {
 }
 
 .line-right {
-  top: 30%;
+  top: 40%;
   right: 10%;
   width: 600px;
   opacity: 0;
@@ -793,9 +796,9 @@ html {
 }
 
 .saturn {
-  top: -15%;
-  left: 35%;
-  width: 500px;
+  top: -5%;
+  left: 0%;
+  width: 400px;
   transform: translateY(-120%) rotate(30deg); /* Starts off-screen to the top */
 }
 
@@ -838,6 +841,27 @@ html {
   0% { transform: translateY(0) rotate(-10deg); }
   50% { transform: translateY(-15px) rotate(-10deg); }
   100% { transform: translateY(0) rotate(-10deg);}
+}
+
+/* --- New Title for Section 3 --- */
+.title-third {
+  font-family: 'Nero', sans-serif;
+  font-size: 6vw; /* Adjust the size as needed */
+  color: #e0f7fa;
+  text-shadow: 0 0 10px rgba(0, 231, 255, 0.5);
+  text-align: center;
+  z-index: 10;
+  position: absolute; /* Position it correctly */
+  top: 3%; /* Adjust vertical position */
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0; /* Start invisible for the animation */
+  transition: opacity 1.2s ease-in-out;
+}
+
+/* Make it visible when the section is loaded */
+.third.loaded .title-third {
+  opacity: 1;
 }
 
 
@@ -890,15 +914,19 @@ html {
     padding: 15px;
   }
   .stone-top-right {
-   width: 100px;
+   width: 150px;
+   top: 20%;
+   right:-10%;
   }
 
   .stone-bottom-left {
-    width: 100px;
+    width: 130px;
+    bottom: 5%;
   }
 
   .saturn {
     width: 100px;
+    top: 3%;
   }
   .astronaut-third {
     width: 150px;
@@ -913,7 +941,6 @@ html {
     margin-top: 30%;          /* push down from top */
     left: -5%;                /* shift slightly left */
     position: relative;
-    
     max-height: 60vh;         /* limit height to viewport */
     overflow-y: auto;         /* scroll only if needed */
     scrollbar-width: thin;    /* nicer scroll for Firefox */
@@ -937,6 +964,10 @@ html {
     opacity: 1;
     flex-shrink: 0;           /* prevent auto-resizing */
   }
+  .title-third {
+    
+    top: 6%;
+  }
 }
 
 
@@ -945,7 +976,7 @@ html {
 
     /* Footer Styles */
     .footer {
-      background-color: #111827; /* Darker navy footer */
+      background-color: #0c121e; /* Darker navy footer */
       color: #d1d5db; /* Light gray footer text */
       padding: 40px 20px;
       border-top: 1px solid #4b5563;
@@ -964,7 +995,7 @@ html {
     .footer-logos {
       display: flex;
       justify-content: center;
-      gap: 20px;
+      gap: 40px;
       margin-bottom: 20px;
     }
 
@@ -991,7 +1022,7 @@ html {
     .footer-center h3,
     .footer-right h3,
     .footer-dev h3 {
-      color: #ff7849;
+      color: #1953f1;
       margin-bottom: 15px;
       font-size: 1.3em;
       font-weight: 600;
@@ -1063,6 +1094,7 @@ html {
       }
 
       .footer-logos img {
+        width: 100px;
         height: 100px;
       }
     }
