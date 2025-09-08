@@ -16,7 +16,6 @@
             background-position: center;
             background-repeat: no-repeat;
             overflow: hidden;
-            /* Prevent scrolling */
             margin: 0;
             height: 100vh;
         }
@@ -25,22 +24,18 @@
             font-family: 'Roboto Mono', monospace;
         }
 
-        /* Container for all visual elements */
         .scene-container {
             position: relative;
             width: 100%;
             height: 100%;
             animation: fadeInPage 1s ease-in-out forwards;
-            /* Added page fade-in animation */
         }
 
-        /* Base styles for positioned images */
         .scene-element {
             position: absolute;
             bottom: 0;
             object-fit: contain;
             pointer-events: none;
-            /* Make images non-interactive */
         }
 
         #toolbg {
@@ -61,19 +56,16 @@
             animation: float 4s ease-in-out infinite;
         }
 
-        /* Event Cards Styling */
         .event-cards-container {
             position: absolute;
             top: 25%;
-            /* Adjusted position to make space for the third card */
-            left: 70%;
-            transform: translateX(-50%);
+            right: 5%;
             display: flex;
             flex-direction: column;
-            /* Stack cards vertically */
             gap: 1.5rem;
             z-index: 30;
             cursor: pointer;
+            width: 50%;
         }
 
         .event-card {
@@ -83,27 +75,15 @@
             border: 1px solid #225f1e;
             border-radius: 0.5rem;
             padding: 1rem;
-            /* Decreased padding to reduce height */
-            width: 550px;
-            /* Made cards wider */
             color: #ccd6f6;
             transition: all 0.3s ease-in-out;
             opacity: 0;
             transform: translateY(20px);
             animation: slideUpFadeIn 0.6s ease-out forwards;
             position: relative;
-            /* For positioning the emoji */
-            overflow: hidden;
-            /* To contain the emoji */
-        }
-
-        .event-card:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .event-card:nth-child(3) {
-            animation-delay: 0.4s;
-            /* Added delay for the new card */
+            max-height: 60vh;
+            overflow-y: auto;
+            padding-right: 15px;
         }
 
         .event-card:hover {
@@ -111,7 +91,9 @@
             border-color: #F59E0B;
         }
 
-        .event-card h2 {
+        .event-card h2,
+        .event-card h3,
+        .event-card h4 {
             font-family: 'Roboto Mono', monospace;
             font-size: 1.25rem;
             font-weight: 700;
@@ -121,7 +103,8 @@
             z-index: 1;
         }
 
-        .event-card p {
+        .event-card p,
+        .event-card li {
             font-size: 0.875rem;
             color: #a8b2d1;
             line-height: 1.5;
@@ -137,12 +120,10 @@
             opacity: 0.3;
             z-index: 0;
             transition: transform 0.5s ease-out;
-            /* Added for smooth start/stop */
         }
 
         .event-card:hover .card-emoji {
             animation: wobble 2s ease-in-out infinite;
-            /* Animation now triggers on hover */
         }
 
         @keyframes float {
@@ -159,7 +140,6 @@
             }
         }
 
-        /* Keyframe Animations */
         @keyframes fadeInPage {
             from {
                 opacity: 0;
@@ -194,26 +174,27 @@
             }
         }
 
-        /* Mobile-specific styles */
         @media (max-width: 900px) {
             .header-title {
                 font-size: 6rem;
                 line-height: 1;
-                
             }
 
             .event-cards-container {
                 width: 80%;
-                left: 50%;
-                transform: translateX(-50%);
+                right: 50%;
+                transform: translateX(50%);
                 top: 17%;
                 gap: 2rem;
                 align-items: center;
+                flex-direction: column;
+                overflow-x: hidden;
             }
 
             .event-card {
                 width: 100%;
                 padding: 0.75rem;
+                min-width: auto;
             }
 
             #tool {
@@ -226,7 +207,7 @@
             }
 
             #toolbg {
-                width:100%;
+                width: 100%;
                 height: 100%;
                 right: 0;
                 top: 15%;
@@ -248,24 +229,28 @@
                     transform: translateX(-50%) translateY(0);
                 }
             }
-
         }
+
         @media (max-width: 450px) {
             .header-title {
-                font-size: 6rem;
+                font-size: 1rem;
                 line-height: 1;
-                
             }
 
             .event-cards-container {
                 width: 90%;
-                left: 50%;
-                transform: translateX(-50%);
+                right: 50%;
+                transform: translateX(50%);
                 top: 20%;
                 gap: 1rem;
                 align-items: center;
+                flex-direction: column;
+                overflow-x: hidden;
             }
-            .event-card h2 {
+
+            .event-card h2,
+            .event-card h3,
+            .event-card h4 {
                 font-family: 'Roboto Mono', monospace;
                 font-size: 1rem;
                 font-weight: 700;
@@ -274,6 +259,7 @@
                 position: relative;
                 z-index: 1;
             }
+
             .event-card p {
                 font-size: 0.73rem;
                 color: #a8b2d1;
@@ -285,6 +271,7 @@
             .event-card {
                 width: 100%;
                 padding: 0.75rem;
+                min-width: auto;
             }
 
             #tool {
@@ -297,7 +284,7 @@
             }
 
             #toolbg {
-                width:100%;
+                width: 100%;
                 height: 100%;
                 right: 0;
                 top: 15%;
@@ -305,21 +292,6 @@
                 object-fit: cover;
                 z-index: 1;
             }
-
-            @keyframes float-mobile {
-                0% {
-                    transform: translateX(-50%) translateY(0);
-                }
-
-                50% {
-                    transform: translateX(-50%) translateY(-10px);
-                }
-
-                100% {
-                    transform: translateX(-50%) translateY(0);
-                }
-            }
-
         }
     </style>
 </head>
@@ -329,10 +301,10 @@
     <div class="scene-container">
         <header class="absolute top-0 left-0 w-full p-8 md:p-12 lg:p-16 z-30 flex justify-between items-start">
             <h1 class="header-title text-4xl md:text-5xl lg:text-6xl font-extrabold text-white">
-                MECHANICAL<br>ENGINEERING
+                General <br>Quiz
             </h1>
 
-            <a href="../../index.html#next" title="Go back"
+            <a href="../mechnical.html#next" title="Go back"
                 class="text-white hover:text-amber-400 transition-all duration-300 hover:scale-110">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor" stroke-width="2">
@@ -342,31 +314,76 @@
         </header>
 
         <div class="event-cards-container">
-        <a href="EventPages/Event1.html">
-            <div class="event-card">
-                <div class="card-emoji">⚙️</div>
-                <h2>Junkyard</h2>
-                <p>Teams of 2-4 will use provided junk materials to build a functional object, aiming for creativity, efficiency, and originality</p>
-            </div>
-        </a>
-        <a href="EventPages/Event2.html">
-            <div class="event-card">
-                <div class="card-emoji">⚙️</div>
-                <h2>CAD</h2>
-                <p>
-The CAD challenge is a two-round, individual design competition for college students focusing on 2D and 3D design accuracy.</p>
-            </div>
-        </a>
-            <a href="EventPages/Event3.html">
-            <div class="event-card">
-                <div class="card-emoji">⚙️</div>
-                <h2>General Quiz</h2>
-                <p>
-This Event will be a Quiz event pertaining to this Department so the quiz question will be from Mechanical only</p>
-            </div>
-        </a>
-        </div>
+            <div class="event-card" style="padding: 1.5rem 2rem; border-radius: 0.5rem; background-color: rgba(30, 41, 59, 0.73); backdrop-filter: blur(5px); border: 1px solid #334155; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; color: #cbd5e1; max-height: 60vh; overflow-y: auto; padding-right: 15px;">
 
+                <div style="margin-bottom: 1.5rem;">
+                    <h3 style="font-size: 1.25rem; font-weight: 700; color: #fbbf24; margin-bottom: 1rem;">Rules</h3>
+                    <ul style="list-style-type: disc; list-style-position: inside; margin-bottom: 0; padding-left: 0; line-height: 1.6;">
+                        <li style="font-size: 0.9rem; color: #e2e8f0;">Quiz Consist of three rounds:</li>
+                        <ul style="list-style-type: circle; list-style-position: inside; margin-left: 1rem; margin-top: 0.5rem; line-height: 1.5;">
+                            <li style="font-size: 0.9rem; color: #e2e8f0;">Elimination - Easy Question.</li>
+                            <li style="font-size: 0.9rem; color: #e2e8f0;">Advanced - Medium Level Question.</li>
+                            <li style="font-size: 0.9rem; color: #e2e8f0;">Final - Tough Question.</li>
+                        </ul>
+                        <li style="font-size: 0.9rem; color: #e2e8f0;">Limited time per question (30 sec).</li>
+                        <li style="font-size: 0.9rem; color: #e2e8f0;">No use of mobile, tabs, laptop or any wearables.</li>
+                        <li style="font-size: 0.9rem; color: #e2e8f0;">Team of (3-4) participants are allowed in 1 team.</li>
+                    </ul>
+                </div>
+
+                <div style="margin-bottom: 1.5rem;">
+                    <h4 style="font-size: 1.25rem; font-weight: 700; color: #fbbf24; margin-bottom: 1rem;">Question Format & Difficulty Level</h4>
+                    <table style="width: 100%; border-collapse: collapse; margin-bottom: 1rem; text-align: left;">
+                        <thead>
+                            <tr style="background-color: #334155;">
+                                <th style="padding: 0.5rem; border: 1px solid #475569; font-size: 0.9rem; color: #e2e8f0;">Quest. Type</th>
+                                <th style="padding: 0.5rem; border: 1px solid #475569; font-size: 0.9rem; color: #e2e8f0;">Easy</th>
+                                <th style="padding: 0.5rem; border: 1px solid #475569; font-size: 0.9rem; color: #e2e8f0;">Medium</th>
+                                <th style="padding: 0.5rem; border: 1px solid #475569; font-size: 0.9rem; color: #e2e8f0;">Hard</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 0.5rem; border: 1px solid #475569; font-size: 0.9rem; color: #e2e8f0;">Correct Ans</td>
+                                <td style="padding: 0.5rem; border: 1px solid #475569; font-size: 0.9rem; color: #e2e8f0;">+2</td>
+                                <td style="padding: 0.5rem; border: 1px solid #475569; font-size: 0.9rem; color: #e2e8f0;">+4</td>
+                                <td style="padding: 0.5rem; border: 1px solid #475569; font-size: 0.9rem; color: #e2e8f0;">+6</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.5rem; border: 1px solid #475569; font-size: 0.9rem; color: #e2e8f0;">Wrong Ans</td>
+                                <td style="padding: 0.5rem; border: 1px solid #475569; font-size: 0.9rem; color: #e2e8f0;">-1</td>
+                                <td style="padding: 0.5rem; border: 1px solid #475569; font-size: 0.9rem; color: #e2e8f0;">-3</td>
+                                <td style="padding: 0.5rem; border: 1px solid #475569; font-size: 0.9rem; color: #e2e8f0;">-5</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.5rem; border: 1px solid #475569; font-size: 0.9rem; color: #e2e8f0;">Un attempted</td>
+                                <td style="padding: 0.5rem; border: 1px solid #475569; font-size: 0.9rem; color: #e2e8f0;">0</td>
+                                <td style="padding: 0.5rem; border: 1px solid #475569; font-size: 0.9rem; color: #e2e8f0;">0</td>
+                                <td style="padding: 0.5rem; border: 1px solid #475569; font-size: 0.9rem; color: #e2e8f0;">0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div style="margin-bottom: 1.5rem;">
+                    <h4 style="font-size: 1.25rem; font-weight: 700; color: #fbbf24; margin-bottom: 1rem;">Tie-Breaker System</h4>
+                    <ul style="list-style-type: disc; list-style-position: inside; margin-bottom: 0; padding-left: 0; line-height: 1.6;">
+                        <li style="font-size: 0.9rem; color: #e2e8f0;">The team with the least negative points ranks higher.</li>
+                        <li style="font-size: 0.9rem; color: #e2e8f0;">Correct ans. +5 points, wrong ans -2. & Unattempted 0 points.</li>
+                        <li style="font-size: 0.9rem; color: #e2e8f0;">The Team with more fastest-answer bonuses ranks higher +1 point. [In less than 5 sec].</li>
+                    </ul>
+                </div>
+
+                <div style="margin-bottom: 1.5rem;">
+                    <h4 style="font-size: 1.25rem; font-weight: 700; color: #fbbf24; margin-bottom: 1rem;">Disqualification Criteria</h4>
+                    <ul style="list-style-type: disc; list-style-position: inside; margin-bottom: 0; padding-left: 0; line-height: 1.6;">
+                        <li style="font-size: 0.9rem; color: #e2e8f0;">If any team reaches NEGATIVE total points, they are eliminated.</li>
+                        <li style="font-size: 0.9rem; color: #e2e8f0;">Any Misconduct or cheating leads to instant disqualification.</li>
+                        <li style="font-size: 0.9rem; color: #e2e8f0;">The final Call is of Quiz Committee's.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
         <img src="toolbg.webp" alt="Cityscape with crane" id="toolbg" class="scene-element">
         <img src="tool.webp" alt="Bridge illustration" id="tool" class="scene-element">
